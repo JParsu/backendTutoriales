@@ -112,7 +112,7 @@ public class TutorialesServiceImplTest {
     @Test
     void updateTutorialById_NotFound() {
 
-        Assertions.assertThrows(TutorialNotFoundException.class, () -> tutorialesService.deleteTutorial("1"));
+        Assertions.assertThrows(TutorialNotFoundException.class, () -> tutorialesService.updateTutorial(null,"1"));
 
     }
 
