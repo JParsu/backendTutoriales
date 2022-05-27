@@ -16,14 +16,11 @@ public class TutorialesController implements TutorialesAPI {
 
     @Autowired
     private TutorialesService tutorialesService;
-
-
     @Override
     @GetMapping("/all")
     public List<TutorialesVO> getAllTutorials() {
         return tutorialesService.getAllTutorials();
     }
-
     @Override
     @PostMapping
     public TutorialesVO createTutorial(@RequestBody TutorialesVO tutorial) {

@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TutorialesRepository extends MongoRepository<TutorialesVO, String> {
-
     List<TutorialesVO>findByPublicadoTrue();
 }

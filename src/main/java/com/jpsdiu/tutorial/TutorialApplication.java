@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 
 @SpringBootApplication
 public class TutorialApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(TutorialApplication.class, args);
 	}

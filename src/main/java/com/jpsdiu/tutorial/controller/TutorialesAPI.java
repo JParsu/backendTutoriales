@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TutorialesAPI {
-
     List<TutorialesVO> getAllTutorials();
     TutorialesVO createTutorial(TutorialesVO tutorial);
     ResponseEntity<TutorialesVO> findTutorialById(String id);

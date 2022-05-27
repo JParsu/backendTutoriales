@@ -1,5 +1,7 @@
 package com.jpsdiu.tutorial.service.impl;
 
+import com.jpsdiu.tutorial.exceptions.exception.TitleIsEmptyException;
+import com.jpsdiu.tutorial.exceptions.exception.TutorialNotFoundException;
 import com.jpsdiu.tutorial.model.TutorialesVO;
 import com.jpsdiu.tutorial.repository.TutorialesRepository;
 import com.jpsdiu.tutorial.service.TutorialesService;
@@ -23,17 +25,20 @@ public class TutorialesServiceImpl implements TutorialesService {
     }
 
     @Override
-    public TutorialesVO createTutorial(TutorialesVO tutorial) {
+    public TutorialesVO createTutorial(TutorialesVO tutorial) throws TitleIsEmptyException{
+        if(tutorial.getTitulo()==null){
+            throw new TitleIsEmptyException();
+        }
         return tutorialesRepository.insert(tutorial);
     }
 
     @Override
-    public ResponseEntity<TutorialesVO> findTutorialById(String id) {
+    public ResponseEntity<TutorialesVO> findTutorialById(String id) throws TutorialNotFoundException{
         if(tutorialesRepository.existsById(id)){
             Optional<TutorialesVO> buscado = tutorialesRepository.findById(id);
             return ResponseEntity.of(buscado);
         }else{
-        return ResponseEntity.notFound().build();
+        throw new TutorialNotFoundException();
         }
     }
 
@@ -43,12 +48,12 @@ public class TutorialesServiceImpl implements TutorialesService {
     }
 
     @Override
-    public ResponseEntity<TutorialesVO> deleteTutorial(String id) {
+    public ResponseEntity<TutorialesVO> deleteTutorial(String id) throws TutorialNotFoundException{
         if(tutorialesRepository.existsById(id)){
         tutorialesRepository.deleteById(id);
         return ResponseEntity.ok().build();
         }else{
-        return ResponseEntity.notFound().build();
+        throw new TutorialNotFoundException();
         }
     }
 
