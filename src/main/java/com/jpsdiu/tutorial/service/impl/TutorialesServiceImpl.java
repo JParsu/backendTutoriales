@@ -58,13 +58,12 @@ public class TutorialesServiceImpl implements TutorialesService {
     }
 
     @Override
-    public ResponseEntity<TutorialesVO> updateTutorial(TutorialesVO tutorial, String id) {
+    public ResponseEntity<TutorialesVO> updateTutorial(TutorialesVO tutorial, String id) throws TutorialNotFoundException{
         if(tutorialesRepository.existsById(id)) {
             tutorialesRepository.save(tutorial);
             return ResponseEntity.ok(tutorial);
         }else{
-        return ResponseEntity.notFound().build();
-        }
+        throw new TutorialNotFoundException();        }
     }
 
     @Override
